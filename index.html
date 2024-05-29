@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Theme Made By www.w3schools.com - No Copyright -->
+  <title>Jay C</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+    .certification {
+            margin-bottom: 20px;
+        }
+
+        .certification img {
+            width: 100%;
+            height: auto;
+        }
+
+        .certification a {
+            text-decoration: none;
+            color: inherit;
+        }
+     .card {
+  position: relative;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.177);
+  /* Adjust the opacity as needed */
+  z-index: 1;
+}
+
+.card-img-container {
+  position: relative;
+  z-index: 0;
+  height: 200px; /* Set a fixed height for the card image container */
+}
+
+.card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-body {
+  position: relative;
+  z-index: 2;
+  color: white;
+  padding: 20px;
+}
+
+.card-title,
+.card-text,
+.btn {
+  color: white;
+}
+    body {
+      font: 20px Montserrat, sans-serif;
+      line-height: 1.8;
+      color: #f5f6f7;
+    }
+    p { font-size: 16px; }
+    .margin { margin-bottom: 45px; }
+    .bg-1 {
+      background-color: #1abc9c;
+      color: #ffffff;
+    }
+    .bg-2 {
+      background-color: #474e5d;
+      color: #ffffff;
+    }
+    .bg-3 {
+      background-color: #ffffff;
+      color: #555555;
+    }
+    .bg-4 {
+      background-color: #2f2f2f;
+      color: #fff;
+    }
+    .container-fluid {
+      padding-top: 70px;
+      padding-bottom: 70px;
+    }
+    .navbar {
+      padding-top: 15px;
+      padding-bottom: 15px;
+      border: 0;
+      border-radius: 0;
+      margin-bottom: 0;
+      font-size: 12px;
+      letter-spacing: 5px;
+    }
+    .navbar-nav li a:hover {
+      color: #1abc9c !important;
+    }
+    .grid-item {
+      padding: 10px;
+      text-align: center;
+    }
+    .column {
+      float: left;
+      width: 100%;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+      .center-block {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+ }
+ .bg-bg {
+      background-color: #f2f2f2;
+      padding: 20px;
+    }
+    .margin {
+      margin-bottom: 15px;
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-headercenter-block">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#section1">Portfolio</a></li>
+        <li><a href="#certifications">Certs</a></li>
+        <li><a href="http://github.com/capnmctavish">Github</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- First Container -->
+<div class="container-fluid bg-1 text-center">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+      <img src="images/jay_website.jpeg" class="img-responsive img-circle margin center-block" alt="Bird" width="200" height="200">
+      <h3 class="margin">Jay Chavan</h3>
+      <h3>Machine Learning Engineer, click here to download my <a href="./Jayesh_Chavan_ML_Engineer.docx">resume</a>, and check out my portfolio <a href="#section1">here</a></h3>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Second Container -->
+<div class="container-fluid bg-2 text-center">
+  <div class="row">
+    <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+      <h3 class="margin">About me</h3>
+      <p>I am passionate about Deep Learning & Computer vision with focus on Machine learning engineering(MLOps) building end-to-end fullstack AI soultions across Hybrid, Edge and multi cloud environments.
+      </p>
+      <p>I work with Python, React, Terraform, Tensorflow, TFX, Apache Beam, and GCP cloud on daily basis, expert with building scalable and resillient AI & Web & Cloud solutions </p>
+
+      <!-- <a href="#" class="btn btn-default btn-lg">
+        <span class="glyphicon glyphicon-search"></span> Search
+      </a> -->
+    </div>
+  </div>
+</div>
+
+<!-- Certifications Section -->
+<div class="container-fluid bg-4 text-center" id="certifications">
+  <h2>Certifications</h2>
+
+  <div class="row">
+    <li>
+      <!-- Certification 1 -->
+          <a href="certificates/gcp.pdf" target="_blank">
+            Google Cloud Professional Architecht
+          </a>
+    </li>
+    <li>
+      <!-- Certification 2 -->
+          <a href="certificates/elasticstack.pdf" target="_blank">
+            Elastic Stack
+          </a>
+    </li>
+    <li>
+      <!-- Certification 3 -->
+          <a href="certificates/Angular_Stack.pdf" target="_blank">
+            MERN Stack
+          </a>
+    </li>
+    <li>
+      <!-- Certification 4 -->
+
+          <a href="certification4_link" target="_blank">
+            Expected Deeplearning AI Coursera
+          </a>
+
+    </li>
+    <li>
+      
+        <a href="certification4_link" target="_blank">
+          Expected Google Cloud Machiine Learning Engineer
+        </a>
+
+  </li>
+  </div>
+</div>
+<section class="container-fluid bg-2 text-center" id="section1">
+  <div class="row">
+
+    <!-- Card 1 -->
+    <div class="col-sm-4 mb-4">
+      <div class="card">
+        <div class="card-img-container">
+          <img src="images/hand_gesture_image.jpeg" alt="Card 2" class="card-img">
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Hand Gesture Painting Tool</h5>
+          <h6 class="card-subtitle mb-2 text-muted">Computer Vision</h6>
+          <p class="card-text">Paint or write with hand gestures on the air</p>
+          <a href="https://github.com/capnmctavish/gesturepaint" class="btn btn-primary">GIT link</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="col-sm-4 mb-4">
+      <div class="card">
+        <div class="card-img-container">
+          <img src="images/iCG.jpeg" alt="Card 2" class="card-img">
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Image Caption Generator</h5>
+          <p class="card-text">Generates a caption for your instagram images</p>
+          <a href="" class="btn btn-primary">Github Link</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="col-sm-4 mb-4">
+      <div class="card">
+        <div class="card-img-container">
+          <img src="images/MLOps.png" alt="Card 2" class="card-img">
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">ML Ops with TFX pipeline on GCP</h5>
+          <p class="card-text">Deploy end-to-end Tensorflow ML Models on GCP cloud with TFX using Ci/CD workflows</p>
+          <a href="https://github.com/capnmctavish/mlops-on-gcp" class="btn btn-primary">Github Link</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-4 mb-4">
+      <div class="card">
+        <div class="card-img-container">
+          <img src="images/drowsiness.jpeg" alt="Card 2" class="card-img">
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Drowsiness Detector</h5>
+          <p class="card-text">Detect if a person is drowsy</p>
+          <a href="https://github.com/capnmctavish/Driver-Drowsiness-Detector" class="btn btn-primary">Github Link</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-4 mb-4">
+      <div class="card">
+        <div class="card-img-container">
+          <img src="images/Image_restoration.png" alt="Card 2" class="card-img">
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Image restoration & super resolution(Re - implementation)</h5>
+          <p class="card-text">Generates a caption for your instagram images</p>
+          <a href="https://github.com/capnmctavish/Bringing-Old-Photos-Back-to-Life" class="btn btn-primary">Github Link</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-4 mb-4">
+      <div class="card">
+        <div class="card-img-container">
+          <img src="images/dementia.jpeg" alt="Card 2" class="card-img">
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Predict Dementia</h5>
+          <p class="card-text">Predicting Dementia based on MRIO scans of patients</p>
+          <a href="https://github.com/capnmctavish/dementia_predictor" class="btn btn-primary">Github Link</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-4 mb-4">
+      <div class="card">
+        <div class="card-img-container">
+          <img src="images/AT&T.png" alt="Card 2" class="card-img">
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Alteryx Financial Dashboard</h5>
+          <p class="card-text">Financial Data Analysis for Alteryx</p>
+          <a href="https://github.com/capnmctavish/ayx_dashboard" class="btn btn-primary">Github Link</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-4 mb-4">
+      <div class="card">
+        <div class="card-img-container">
+          <img src="images/csco.png" alt="Card 2" class="card-img">
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">CISCO Financial Dashboard</h5>
+          <p class="card-text">Finance data analytics dashboard for CISCO</p>
+          <a href="https://github.com/capnmctavish/csco" class="btn btn-primary">Github Link</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Repeat the above structure for each card, changing the content -->
+
+  </div>
+</section>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-x8GMr3gPm7mUHuPzycJwW4l9nVW/Bo3Xdebsu7b3FBy202DyX4mdK8JPHrLVi6S9"
+        crossorigin="anonymous"></script>
+<!-- Footer -->
+<footer class="container-fluid bg-4 text-center">
+  <p>Made By <a href="https://jaykc.dev">Jay C</a></p> 
+</footer>
+
+</body>
+</html>
