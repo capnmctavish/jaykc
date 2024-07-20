@@ -2,7 +2,7 @@ name: Commit Simulator
 
 on:
   schedule:
-    - cron: '0 */4 * * *' # Run every 4 hours
+    - cron: ${{ secrets.CRON_SCHEDULE }} # Use secret for cron schedule
   workflow_dispatch: # Allows manual trigger of the workflow
 
 jobs:
@@ -20,24 +20,30 @@ jobs:
 
     - name: Install dependencies
       run: |
-        pip install PyGithub schedule
+        pip install PyGithub schedule python-dotenv
 
     - name: Run commit simulator
       env:
-        MY_GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
-        REPOSITORY: 'capnmctavish/jaykc'
-        COMMIT_MESSAGES_FILE: 'commit_messages.txt'
+        GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
+        REPOSITORY: ${{ secrets.REPOSITORY }}
+        COMMIT_MESSAGES_FILE: ${{ secrets.COMMIT_MESSAGES_FILE }}
       run: |
         python <<EOF
+        import os
         import random
-        import time
+        import subprocess
+        from datetime import datetime, timedelta
         from github import Github
         from github import InputGitTreeElement
         import schedule
+        from dotenv import load_dotenv
 
-        GITHUB_TOKEN = '${{ secrets.MY_GITHUB_TOKEN }}'
-        REPOSITORY = '${{ env.REPOSITORY }}'
-        COMMIT_MESSAGES_FILE = '${{ env.COMMIT_MESSAGES_FILE }}'
+        # Load environment variables from .env file
+        load_dotenv()
+
+        GITHUB_TOKEN = os.getenv('GITHUB_TOKEN')
+        REPOSITORY = os.getenv('REPOSITORY')
+        COMMIT_MESSAGES_FILE = os.getenv('COMMIT_MESSAGES_FILE')
 
         g = Github(GITHUB_TOKEN)
 
@@ -81,4 +87,6 @@ jobs:
         schedule_random_intervals()
 
         while True:
-            schedule.run_p
+            schedule.run_pending()
+            time.sleep(1)
+        EOF
