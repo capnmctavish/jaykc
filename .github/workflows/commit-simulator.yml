@@ -1,0 +1,86 @@
+name: Commit Simulator
+
+on:
+  schedule:
+    - cron: '0 */4 * * *' # Run every 4 hours
+  workflow_dispatch: # Allows manual trigger of the workflow
+
+jobs:
+  simulate-commit:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.x
+
+    - name: Install dependencies
+      run: |
+        pip install PyGithub schedule
+
+    - name: Run commit simulator
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        REPOSITORY: 'capnmctavish/jaykc'
+        COMMIT_MESSAGES_FILE: 'commit_messages.txt'
+      run: |
+        python <<EOF
+        import random
+        import time
+        from github import Github
+        from github import InputGitTreeElement
+        import schedule
+
+        GITHUB_TOKEN = '${{ secrets.GITHUB_TOKEN }}'
+        REPOSITORY = '${{ env.REPOSITORY }}'
+        COMMIT_MESSAGES_FILE = '${{ env.COMMIT_MESSAGES_FILE }}'
+
+        g = Github(GITHUB_TOKEN)
+
+        def get_random_commit_message():
+            with open(COMMIT_MESSAGES_FILE, 'r') as file:
+                messages = file.readlines()
+            return random.choice(messages).strip()
+
+        def simulate_commit():
+            repo = g.get_repo(REPOSITORY)
+            commit_message = get_random_commit_message()
+
+            base_commit = repo.get_branch("main").commit
+            base_tree = repo.get_git_tree(base_commit.commit.tree.sha)
+
+            tree_elements = [
+                InputGitTreeElement(
+                    path=element.path,
+                    mode=element.mode,
+                    type=element.type,
+                    sha=element.sha
+                ) for element in base_tree.tree
+            ]
+
+            new_tree = repo.create_git_tree(tree_elements)
+            new_commit = repo.create_git_commit(commit_message, new_tree, [base_commit.commit])
+            ref = repo.get_git_ref("heads/main")
+            ref.edit(new_commit.sha)
+
+            print(f"Simulated commit to {REPOSITORY} with message: '{commit_message}'")
+
+        def job():
+            simulate_commit()
+
+        def schedule_random_intervals():
+            for _ in range(random.randint(3, 5)):
+                interval = random.randint(0, 86400 // 5)
+                schedule.every(interval).seconds.do(job)
+                print(f"Scheduled commit in {interval} seconds")
+
+        schedule_random_intervals()
+
+        while True:
+            schedule.run_pending()
+            time.sleep(1)
+        EOF
