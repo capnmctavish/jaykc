@@ -2,8 +2,13 @@ name: Commit Simulator
 
 on:
   schedule:
-    - cron: '*/2 * * * *' # Use secret for cron schedule
-  workflow_dispatch: # Allows manual trigger of the workflow
+    - cron: '*/2 * * * *' # Run every 5 minutes for testing
+  workflow_dispatch:
+    inputs:
+      cron_schedule:
+        description: 'Cron schedule for the workflow'
+        required: false
+        default: '0 */4 * * *'
 
 jobs:
   simulate-commit:
@@ -20,11 +25,11 @@ jobs:
 
     - name: Install dependencies
       run: |
-        pip install PyGithub schedule python-dotenv
+        pip install PyGithub schedule
 
     - name: Run commit simulator
       env:
-        GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
+        MY_GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
         REPOSITORY: ${{ secrets.REPOSITORY }}
         COMMIT_MESSAGES_FILE: ${{ secrets.COMMIT_MESSAGES_FILE }}
       run: |
@@ -36,12 +41,8 @@ jobs:
         from github import Github
         from github import InputGitTreeElement
         import schedule
-        from dotenv import load_dotenv
 
-        # Load environment variables from .env file
-        load_dotenv()
-
-        GITHUB_TOKEN = os.getenv('GITHUB_TOKEN')
+        GITHUB_TOKEN = os.getenv('MY_GITHUB_TOKEN')
         REPOSITORY = os.getenv('REPOSITORY')
         COMMIT_MESSAGES_FILE = os.getenv('COMMIT_MESSAGES_FILE')
 
