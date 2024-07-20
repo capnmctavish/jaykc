@@ -24,7 +24,7 @@ jobs:
 
     - name: Run commit simulator
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        MY_GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
         REPOSITORY: 'capnmctavish/jaykc'
         COMMIT_MESSAGES_FILE: 'commit_messages.txt'
       run: |
@@ -35,7 +35,7 @@ jobs:
         from github import InputGitTreeElement
         import schedule
 
-        GITHUB_TOKEN = '${{ secrets.GITHUB_TOKEN }}'
+        GITHUB_TOKEN = '${{ secrets.MY_GITHUB_TOKEN }}'
         REPOSITORY = '${{ env.REPOSITORY }}'
         COMMIT_MESSAGES_FILE = '${{ env.COMMIT_MESSAGES_FILE }}'
 
@@ -81,6 +81,4 @@ jobs:
         schedule_random_intervals()
 
         while True:
-            schedule.run_pending()
-            time.sleep(1)
-        EOF
+            schedule.run_p
