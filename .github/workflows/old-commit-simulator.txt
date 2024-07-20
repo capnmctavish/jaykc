@@ -2,7 +2,7 @@ name: Commit Simulator
 
 on:
   schedule:
-    - cron: '*/5 * * * *' # Run every 5 minutes for testing
+    - cron: '*/2 * * * *' # Run every 5 minutes for testing
   workflow_dispatch:
     inputs:
       cron_schedule:
@@ -25,7 +25,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        pip install PyGithub
+        pip install PyGithub schedule
 
     - name: Run commit simulator
       env:
@@ -35,12 +35,13 @@ jobs:
       run: |
         python <<EOF
         import os
+        import time
         import random
         import subprocess
         from datetime import datetime, timedelta
         from github import Github
         from github import InputGitTreeElement
-        import time
+        import schedule
 
         GITHUB_TOKEN = os.getenv('MY_GITHUB_TOKEN')
         REPOSITORY = os.getenv('REPOSITORY')
@@ -76,13 +77,18 @@ jobs:
 
             print(f"Simulated commit to {REPOSITORY} with message: '{commit_message}'")
 
-        def schedule_commits():
-            commit_count = random.randint(3, 5)  # Number of commits per run
-            for _ in range(commit_count):
-                simulate_commit()
-                time_to_wait = random.randint(0, 300)  # Wait between 0 and 5 minutes
-                print(f"Waiting for {time_to_wait} seconds before next commit.")
-                time.sleep(time_to_wait)
+        def job():
+            simulate_commit()
 
-        schedule_commits()
+        def schedule_random_intervals():
+            for _ in range(random.randint(3, 5)):
+                interval = random.randint(0, 86400 // 5)
+                schedule.every(interval).seconds.do(job)
+                print(f"Scheduled commit in {interval} seconds")
+
+        schedule_random_intervals()
+
+        while True:
+            schedule.run_pending()
+            time.sleep(1)
         EOF
