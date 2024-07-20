@@ -2,7 +2,7 @@ name: Commit Simulator
 
 on:
   schedule:
-    - cron: ${{ secrets.CRON_SCHEDULE }} # Use secret for cron schedule
+    - cron: '*/2 * * * *' # Use secret for cron schedule
   workflow_dispatch: # Allows manual trigger of the workflow
 
 jobs:
